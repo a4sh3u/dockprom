@@ -38,6 +38,7 @@ scrape_configs:
         - http://prometheus.io
         - https://prometheus.io
         - http://example.com:8080
+        - http://portal.mobilstrom.de
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
