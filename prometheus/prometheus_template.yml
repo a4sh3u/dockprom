@@ -35,10 +35,22 @@ scrape_configs:
       module: [http_2xx]
     static_configs:
       - targets:
-        - http://prometheus.io
-        - https://prometheus.io
-        - http://example.com:8080
-        - http://portal.mobilstrom.de
+        - "${BAM_URL}"
+        - "${BIM_URL}"
+        - "${BSCP_URL}"
+        - "${CDAE_URL}"
+        - "${CDM_URL}"
+        - "${DM_URL}"
+        - "${DEVPORT_URL}"
+        - "${EDMA_URL}"
+        - "${ERPA_URL}"
+        - "${MCC_URL}"
+        - "${MDA_URL}"
+        - "${OPCL_URL}"
+        - "${PKI_URL}"
+        - "${POM_URL}"
+        - "${PSMDE_URL}"
+        - "${PORTAL_URL}"
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
