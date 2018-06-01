@@ -1,17 +1,16 @@
 dockprom
 ========
 
-A monitoring solution for Docker hosts and containers with [Prometheus](https://prometheus.io/), [Grafana](http://grafana.org/), [cAdvisor](https://github.com/google/cadvisor), 
+A monitoring solution for Docker hosts and containers with [Prometheus](https://prometheus.io/), [Grafana](http://grafana.org/), [cAdvisor](https://github.com/google/cadvisor),
 [NodeExporter](https://github.com/prometheus/node_exporter) and alerting with [AlertManager](https://github.com/prometheus/alertmanager).
 
-***If you're looking for the Docker Swarm version please go to [stefanprodan/swarmprom](https://github.com/stefanprodan/swarmprom)***
 
 ## Install
 
 Clone this repository on your Docker host, cd into dockprom directory and run compose up:
 
 ```bash
-git clone https://github.com/stefanprodan/dockprom
+git clone git@github.com:a4sh3u/dockprom.git
 cd dockprom
 
 ADMIN_USER=admin ADMIN_PASSWORD=admin docker-compose up -d
@@ -29,7 +28,7 @@ Containers:
 * Grafana (visualize metrics) `http://<host-ip>:3000`
 * NodeExporter (host metrics collector)
 * cAdvisor (containers metrics collector)
-* Caddy (reverse proxy and basic auth provider for prometheus and alertmanager) 
+* Caddy (reverse proxy and basic auth provider for prometheus and alertmanager)
 
 ## Setup Grafana
 
@@ -60,7 +59,7 @@ For storage and particularly Free Storage graph, you have to specify the fstype 
 You can find it in `grafana/dashboards/docker_host.json`, at line 480 :
 
       "expr": "sum(node_filesystem_free{fstype=\"btrfs\"})",
-      
+
 I work on BTRFS, so i need to change `aufs` to `btrfs`.
 
 You can find right value for your system in Prometheus `http://<host-ip>:9090` launching this request :
@@ -108,7 +107,7 @@ I've set the Prometheus retention period to 200h and the heap size to 1GB, you c
       - '-storage.local.retention=200h'
 ```
 
-Make sure you set the heap size to a maximum of 50% of the total physical memory. 
+Make sure you set the heap size to a maximum of 50% of the total physical memory.
 
 ## Define alerts
 
@@ -225,15 +224,15 @@ ALERT jenkins_high_memory
 
 ## Setup alerting
 
-The AlertManager service is responsible for handling alerts sent by Prometheus server. 
-AlertManager can send notifications via email, Pushover, Slack, HipChat or any other system that exposes a webhook interface. 
+The AlertManager service is responsible for handling alerts sent by Prometheus server.
+AlertManager can send notifications via email, Pushover, Slack, HipChat or any other system that exposes a webhook interface.
 A complete list of integrations can be found [here](https://prometheus.io/docs/alerting/configuration).
 
 You can view and silence notifications by accessing `http://<host-ip>:9093`.
 
 The notification receivers can be configured in [alertmanager/config.yml](https://github.com/stefanprodan/dockprom/blob/master/alertmanager/config.yml) file.
 
-To receive alerts via Slack you need to make a custom integration by choose ***incoming web hooks*** in your Slack team app page. 
+To receive alerts via Slack you need to make a custom integration by choose ***incoming web hooks*** in your Slack team app page.
 You can find more details on setting up Slack integration [here](http://www.robustperception.io/using-slack-with-the-alertmanager/).
 
 Copy the Slack Webhook URL into the ***api_url*** field and specify a Slack ***channel***.
