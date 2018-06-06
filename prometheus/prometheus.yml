@@ -35,7 +35,22 @@ scrape_configs:
       module: [http_2xx]
     static_configs:
       - targets:
-        - "${SMAVA_URL}"
+        - "http://backend-integration:45000/bam/services/status"
+        - "http://backend-integration:45000/bim/services/status"
+        - "http://backend-integration:45000/bscp520/services/status"
+        - "http://backend-integration:45000/cdanalytics/services/status"
+        - "http://backend-integration:45000/cdm/services/status"
+        - "http://backend-integration:45000/dm/services/status"
+        - "http://backend-integration:45000/devport/services/status"
+        - "http://backend-integration:45000/edma/services/status"
+        - "http://backend-integration:45000/erpa2/services/status"
+        - "http://backend-integration:45000/mcc/services/status"
+        - "http://backend-integration:45000/mda/services/status"
+        - "http://backend-integration:45000/opcl/#/home"
+        - "http://backend-integration:45000/pki/services/status"
+        - "http://backend-integration:45000/pom/services/status"
+        - "http://backend-integration:45000/psmde/services/status"
+        - "http://backend-integration:3000/de/info"
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
