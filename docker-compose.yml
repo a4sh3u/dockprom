@@ -133,7 +133,7 @@ services:
       org.label-schema.group: "monitoring"
 
   scriptexporter2:
-    build: scriptexporter/image
+    build: scriptexporter/build
     container_name: scriptexporter2
     volumes:
       - ./scriptexporter/collector.sh:/root/scripts/collector.sh
