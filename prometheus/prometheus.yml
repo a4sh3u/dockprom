@@ -47,6 +47,7 @@ scrape_configs:
 
   - job_name: 'script_exporter2'
     metrics_path: /metrics/collector.sh
+    scrape_interval: 10s
     static_configs:
       - targets: ['scriptexporter2:9661']
 
