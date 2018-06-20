@@ -9,4 +9,5 @@ WORKDIR /root/
 COPY --from=0 /go/src/script-exporter/script-exporter script-exporter.sh
 RUN chmod +x script-exporter.sh
 
+RUN apk update; apk add bash curl
 CMD /root/script-exporter.sh -script.path /root/scripts -web.listen-address :9661
