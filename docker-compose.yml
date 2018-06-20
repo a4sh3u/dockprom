@@ -136,7 +136,7 @@ services:
     image: stefanprodan/caddy
     container_name: caddy
     ports:
-      - "3100:3000"
+      - "3000:3000"
       - "9090:9090"
       - "9093:9093"
       - "9172:9172"

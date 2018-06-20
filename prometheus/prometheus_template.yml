@@ -50,7 +50,7 @@ scrape_configs:
     params:
       pattern: ['.*']
     static_configs:
-      - targets: ['localhost:9172']
+      - targets: ['scriptexporter:9172']
 
 alerting:
   alertmanagers:
