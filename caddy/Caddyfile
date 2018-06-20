@@ -36,3 +36,12 @@
     errors stderr
     tls off
 }
+
+:9661 {
+    proxy / scriptexporter2:9661 {
+            transparent
+        }
+
+    errors stderr
+    tls off
+}

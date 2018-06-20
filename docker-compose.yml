@@ -132,6 +132,19 @@ services:
     labels:
       org.label-schema.group: "monitoring"
 
+  scriptexporter2:
+    build: scriptexporter/image
+    container_name: scriptexporter2
+    volumes:
+      - ./scriptexporter/collector.sh:/root/scripts/collector.sh
+    restart: unless-stopped
+    expose:
+      - 9661
+    networks:
+      - monitor-net
+    labels:
+      org.label-schema.group: "monitoring"
+
   caddy:
     image: stefanprodan/caddy
     container_name: caddy
@@ -140,6 +153,7 @@ services:
       - "9090:9090"
       - "9093:9093"
       - "9172:9172"
+      - "9661:9661"
     volumes:
       - ./caddy/:/etc/caddy/
     environment:
