@@ -45,18 +45,17 @@ scrape_configs:
       - target_label: __address__
         replacement: blackbox:9115
 
-  - job_name: 'script_exporter2'
+  - job_name: 'script_exporter_collector'
     metrics_path: /metrics/collector.sh
     scrape_interval: 10s
     static_configs:
-      - targets: ['scriptexporter2:9661']
+      - targets: ['scriptexporter:9661']
 
-  - job_name: 'script_exporter'
-    metrics_path: /probe
-    params:
-      pattern: ['.*']
+  - job_name: 'script_exporter_analyser'
+    metrics_path: /metrics/analyser.sh
+    scrape_interval: 10s
     static_configs:
-      - targets: ['scriptexporter:9172']
+      - targets: ['scriptexporter:9661']
 
 alerting:
   alertmanagers:

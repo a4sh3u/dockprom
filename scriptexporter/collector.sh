@@ -4,6 +4,6 @@ APPLICATIONS=$(curl -k -s $EUREKA_URL | grep name | grep -v MyOwn | awk -F '[<>]
 for app in $APPLICATIONS; do
   app_status_page_urls=$(curl -k -s ${EUREKA_URL}/${app} | grep statusPageUrl | awk -F '[<>]' '{print $3}' )
   for url in ${app_status_page_urls}; do
-    echo "scriptexporter_http_status{app=\"$app\",url=\"$url\"} $(curl -s -o /dev/null -I -w "%{http_code}" $url)" &
+    echo "scriptexporter_collector_http_status{app=\"$app\",url=\"$url\"} $(curl -s -o /dev/null -I -w "%{http_code}" $url)" &
   done
 done

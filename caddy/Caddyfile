@@ -28,17 +28,8 @@
     tls off
 }
 
-:9172 {
-    proxy / scriptexporter:9172 {
-            transparent
-        }
-
-    errors stderr
-    tls off
-}
-
 :9661 {
-    proxy / scriptexporter2:9661 {
+    proxy / scriptexporter:9661 {
             transparent
         }
 

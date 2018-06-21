@@ -120,23 +120,11 @@ services:
       org.label-schema.group: "monitoring"
 
   scriptexporter:
-    image: adhocteam/script-exporter:master
+    build: scriptexporter/build
     container_name: scriptexporter
     volumes:
-      - ./scriptexporter/config.yml:/etc/script-exporter/config.yml
-    restart: unless-stopped
-    expose:
-      - 9172
-    networks:
-      - monitor-net
-    labels:
-      org.label-schema.group: "monitoring"
-
-  scriptexporter2:
-    build: scriptexporter/build
-    container_name: scriptexporter2
-    volumes:
       - ./scriptexporter/collector.sh:/root/scripts/collector.sh
+      - ./scriptexporter/analyser.sh:/root/scripts/analyser.sh
     restart: unless-stopped
     expose:
       - 9661
@@ -152,7 +140,6 @@ services:
       - "3000:3000"
       - "9090:9090"
       - "9093:9093"
-      - "9172:9172"
       - "9661:9661"
     volumes:
       - ./caddy/:/etc/caddy/
