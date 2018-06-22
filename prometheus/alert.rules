@@ -21,6 +21,17 @@ groups:
       summary: "Some listed microservices are not running - Definitely take a look like Big Brother is watching!!!"
       description: "The microservice not running is {{ $labels.app }} identified by URL {{ $labels.url }}"
 
+- name: Main services NOT RUNNING
+  rules:
+  - alert: main_services_not_running
+    expr: probe_http_status_code!=200 AND probe_http_status_code{instance="http://213.183.195.222:8888/",job="blackbox"}!=404
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "ALERT!!!!!!!!!!!!!!!!!!!!!!! One of the main Services is DOWN"
+      description: "This Service is DOWN {{ $labels.instance }}"
+
 - name: targets
   rules:
   - alert: monitor_service_down
