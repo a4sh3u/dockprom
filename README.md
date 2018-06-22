@@ -18,8 +18,8 @@ ADMIN_USER=admin ADMIN_PASSWORD=admin ./deploy.sh
 
 Prerequisites:
 
-* Docker Engine >= 1.13
-* Docker Compose >= 1.11
+* Docker Engine >= 18.05.0-ce
+* Docker Compose >= 1.21.2
 
 Containers:
 
@@ -28,6 +28,8 @@ Containers:
 * Grafana (visualize metrics) `http://<host-ip>:3000`
 * NodeExporter (host metrics collector)
 * cAdvisor (containers metrics collector)
+* Scriptexporter (Custom scripts - EUREKA metrics)
+* Blackbox Exporter (main services metrics)
 * Caddy (reverse proxy and basic auth provider for prometheus and alertmanager)
 
 ## Setup Grafana
