@@ -1,11 +1,15 @@
+global:
+  smtp_smarthost: 'localhost:25'
+  smtp_from: 'alertmanager@smava.de'
+
 route:
-    receiver: 'slack'
+  receiver: 'OPS_Team'
+  group_by: ['alertname', 'cluster']
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 3h
 
 receivers:
-    - name: 'slack'
-      slack_configs:
-          - send_resolved: true
-            text: "{{ .CommonAnnotations.description }}"
-            username: 'Prometheus'
-            channel: '#<channel-name>'
-            api_url: 'https://hooks.slack.com/services/<webhook-id>'
+- name: 'OPS_Team'
+  email_configs:
+  - to: 'ashutosh.singh@smava.de'

@@ -1,4 +1,26 @@
 groups:
+- name: microservices not running
+  rules:
+  - alert: microservices_not_running
+    expr: scriptexporter_collector_http_status!=200 AND scriptexporter_collector_http_status!=404 AND scriptexporter_collector_http_status!=401
+    for: 30s
+    labels:
+      severity: warning
+    annotations:
+      summary: "Some microservices are not running - Take a look or not - Dance like everyone's watching!!!"
+      description: "The microservice not running is {{ $labels.app }} identified by URL {{ $labels.url }}"
+
+- name: listed microservices not running
+  rules:
+  - alert: listed_microservices_not_running
+    expr: scriptexporter_analyser_http_status!=200 AND scriptexporter_analyser_http_status!=404 AND scriptexporter_analyser_http_status!=401
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "Some listed microservices are not running - Definitely take a look like Big Brother is watching!!!"
+      description: "The microservice not running is {{ $labels.app }} identified by URL {{ $labels.url }}"
+
 - name: targets
   rules:
   - alert: monitor_service_down
@@ -67,4 +89,3 @@ groups:
     annotations:
       summary: "Jenkins high memory usage"
       description: "Jenkins memory consumption is at {{ humanize $value}}."
-

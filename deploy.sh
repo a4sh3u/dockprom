@@ -7,5 +7,5 @@ fi
 
 . ./.env
 envsubst < "./prometheus/prometheus_template.yml" > "./prometheus/prometheus.yml"
-docker-compose up -d
+docker-compose up -d --build
 docker-compose ps
